@@ -1,0 +1,18 @@
+Order ID, User Id ,ORDER DATE,City,Channel,Revenue,Converted,Notes
+1001,1,17-01-2024,Delhi,meta,149,1,ok
+1002,1,2024/01/31, delhi ,Meta,0,0,
+1003,2,02-15-2024,Chennai,YOUTUBE,99.5,yes,promo
+1004,2,15 Feb 2024,chennai,YouTube,,,missing rev
+1005,3,2024-02-20,Bengaluru,Google,"1,299",1,comma number
+1006,3,2024-02-20,Bengaluru,Google,1299,1,DUPLICATE row almost
+1007,4,32-01-2024,Mumbai,Organic,80,1,bad date
+1008, 5 ,2024-03-01,Hyderabad,meta ,49,TRUE,spaces
+1009,5,2024-03-05,Hyd,Meta,N/A,0,text na
+1010,,2024-03-08,Delhi,Organic,200,1,missing user
+1011,6,2024-03-10,Delhi,Meta,0,0,
+1012,6,2024-03-10,Delhi,Meta,0,0,exact duplicate next
+1012,6,2024-03-10,Delhi,Meta,0,0,exact duplicate
+1013,7,03/12/2024,Mumbai,youtube,150,1,US date style
+1014,8,2024-03-18,Bengaluru,Google,-20,1,negative refund?
+1015,9,2024-03-20,Chennai,Organic,75,1,ok
+1016,10,20-03-2024,Delhi,Meta,220,1,ok

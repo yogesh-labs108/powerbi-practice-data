@@ -1,0 +1,88 @@
+POWER QUERY EDITOR PRACTICE
+===========================
+
+Raw URLs (after publish):
+https://raw.githubusercontent.com/yogesh-labs108/powerbi-practice-data/main/pq_messy_orders.csv
+https://raw.githubusercontent.com/yogesh-labs108/powerbi-practice-data/main/pq_messy_users.csv
+https://raw.githubusercontent.com/yogesh-labs108/powerbi-practice-data/main/pq_wide_revenue.csv
+https://raw.githubusercontent.com/yogesh-labs108/powerbi-practice-data/main/pq_split_customers.csv
+
+Or local folder:
+Downloads/Yogesh_Excel_PowerBI_Guide/practice_data/power_query/
+
+========================================
+FILE 1: pq_messy_orders.csv  (main workout)
+========================================
+Load via Web (Anonymous) or Upload.
+
+Do these steps in order (Home / Transform tabs):
+
+1) Rename query to messy_orders
+2) Use first row as headers (if needed) / check headers
+3) Transform -> Rename columns to clean names:
+   order_id, user_id, order_date, city, channel, revenue, converted, notes
+4) Transform -> Format -> Trim + Clean on city, channel, user_id
+5) Transform -> Format -> Lowercase on channel, then Capitalize Each Word OR replace values:
+   meta->Meta, youtube->YouTube, google->Google, organic->Organic
+6) Replace values in city: Hyd -> Hyderabad
+7) Fix revenue:
+   - Replace "," with nothing (1,299 -> 1299)
+   - Replace "N/A" with null
+   - Change type to Decimal Number
+8) Fix converted:
+   - Replace yes/YES/TRUE/true -> 1
+   - blank -> null or 0 (decide one rule)
+   - Change type to Whole Number
+9) Fix order_date:
+   - Change type to Date (may error on bad rows)
+   - On error rows: right-click column -> Replace Errors -> null
+   - Filter out null dates OR keep and flag them
+10) Remove rows with blank user_id
+11) Remove duplicates on order_id (Home -> Remove Rows -> Remove Duplicates)
+12) Add Column -> Conditional Column:
+    revenue_status = if revenue = 0 then "zero" else if revenue < 0 then "refund" else "paid"
+13) Close & Apply / Create report and make a bar: count by channel
+
+========================================
+FILE 2: pq_messy_users.csv
+========================================
+1) Rename query users_clean
+2) Trim column names / rename to: user_id, full_name, plan, city, email, signup_date
+3) Trim full_name (double spaces)
+4) Split column full_name by delimiter:
+   - for "Rahul,Mehta" first Replace "," with space OR split by comma
+5) Standardize plan:
+   Replace Pro Plan/PRO/pro -> Pro
+   Replace FREE/free -> Free
+6) signup_date -> Date (replace errors null)
+7) Remove duplicate user_id
+8) Merge queries: Home -> Merge Queries
+   messy_orders Left Outer join users_clean on user_id
+   Expand plan, full_name
+
+========================================
+FILE 3: pq_wide_revenue.csv  (Unpivot)
+========================================
+1) Load file
+2) Select Jan, Feb, Mar, Apr columns
+3) Transform -> Unpivot Columns
+4) Rename Attribute -> month, Value -> revenue
+5) Replace N/A and blanks in revenue with null
+6) Change revenue to whole number
+7) Chart later: revenue by city and month
+
+========================================
+FILE 4: pq_split_customers.csv
+========================================
+1) Split customer by space into first_name, last_name (Split by delimiter -> Space -> Right-most or Each occurrence carefully)
+2) Split address by comma into street, city, pincode
+3) Trim all new columns
+4) Change pincode to text (keep leading zeros if any)
+
+========================================
+DONE WHEN
+========================================
+- You can explain each Applied Step on the right
+- Merge orders+users works
+- Unpivot wide revenue works
+- No red type errors left (or errors handled on purpose)
